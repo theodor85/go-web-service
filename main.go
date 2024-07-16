@@ -23,9 +23,7 @@ func main() {
 
 	r.Post("/counter", func(w http.ResponseWriter, r *http.Request) {
 		r.ParseForm()
-		str_new_value := r.FormValue("value")
-
-		new_value, err := strconv.Atoi(str_new_value)
+		new_value, err := strconv.Atoi(r.FormValue("value"))
 		if err != nil {
 			w.WriteHeader(http.StatusUnprocessableEntity)
 			w.Write([]byte("Invalid value"))
